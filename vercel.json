@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "./",
+        "use": "@vercel/static-build",
+        "config": {}
+      }
+    ],
+    "buildCommand": "next build && next export",
+    "startCommand": "NODE_ENV=production node build/index.js"
+  }
