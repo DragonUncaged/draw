@@ -7,6 +7,4 @@
         "config": {}
       }
     ],
-    "buildCommand": "next build && next export",
-    "startCommand": "NODE_ENV=production node build/index.js"
   }
