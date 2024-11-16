@@ -6,7 +6,6 @@ import express from "express";
 import next, { NextApiHandler } from "next";
 import { Server } from "socket.io";
 import { v4 } from "uuid";
-import cors from "cors";
 
 const port = parseInt(process.env.PORT || "3000", 10);
 const dev = process.env.NODE_ENV !== "production";
@@ -15,7 +14,6 @@ const nextHandler: NextApiHandler = nextApp.getRequestHandler();
 
 nextApp.prepare().then(async () => {
   const app = express();
-  app.use(cors()); // Add this line to enable CORS
   const server = createServer(app);
 
   const io = new Server<ClientToServerEvents, ServerToClientEvents>(server);
@@ -157,7 +155,6 @@ nextApp.prepare().then(async () => {
     });
 
     socket.on("disconnecting", () => {
-      console.log(`Disconnecting: ${socket.id}`);
       const roomId = getRoomId();
       leaveRoom(roomId, socket.id);
 
@@ -165,10 +162,7 @@ nextApp.prepare().then(async () => {
     });
   });
 
-  app.all("*", (req: any, res: any) => {
-    console.log(`Handling request for ${req.url}`);
-    return nextHandler(req, res);
-  });
+  app.all("*", (req: any, res: any) => nextHandler(req, res));
 
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
