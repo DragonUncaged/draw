@@ -7,13 +7,14 @@
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm-run-all build:*",
-    "start": "NODE_ENV=production node build/index.js",
+    "start": "node build/index.js",
     "lint": "next lint"
   },
   "dependencies": {
     "express": "^4.17.3",
     "framer-motion": "^6.3.3",
     "next": "latest",
+    "nodemon": "^3.1.7",
     "react": "^17.0.2",
     "react-colorful": "^5.5.1",
     "react-dom": "^17.0.2",
@@ -24,6 +25,7 @@
     "recoil": "^0.7.3-alpha.2",
     "socket.io": "^4.5.0",
     "socket.io-client": "^4.5.0",
+    "ts-node": "^10.9.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
