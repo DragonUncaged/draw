@@ -7,8 +7,9 @@
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm-run-all build:*",
-    "start": "node build/index.js",
-    "lint": "next lint"
+    "start": "node server/index.js",
+    "lint": "next lint",
+    "vercel-build": "npm run build:server && npm run build:next"
   },
   "dependencies": {
     "express": "^4.17.3",
